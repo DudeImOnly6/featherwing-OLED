@@ -28,17 +28,26 @@ while True:
     display.fill(0)
 
 # SPRITES
-bitmap, palette = adafruit_imageload.load("/rock2.bmp",
+sprite_sheet, palette = adafruit_imageload.load("/rock3.bmp",
                                           bitmap=displayio.Bitmap,
                                           palette=displayio.Palette)
+                                          
 
-tile_grid = displayio.TileGrid(bitmap, pixel_shader=palette)
+sprite = displayio.TileGrid(sprite_sheet, pixel_shader=palette,
+                            width = 1,
+                            height = 1,
+                            tile_width = 16,
+                            tile_height = 16,
+                            default_tile = 0)
+
+
+tile_grid = displayio.TileGrid(sprite_sheet, pixel_shader=palette)
 group = displayio.Group()
 group.append(tile_grid)
-display.show(group)
-
 group.x = 62
 group.y = 16
+
+display.show(group)
 
 while True:
     pass
