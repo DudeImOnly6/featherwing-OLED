@@ -31,7 +31,7 @@ while True:
 sprite_sheet, palette = adafruit_imageload.load("/rock3.bmp",
                                           bitmap=displayio.Bitmap,
                                           palette=displayio.Palette)
-                                          
+
 
 sprite = displayio.TileGrid(sprite_sheet, pixel_shader=palette,
                             width = 1,
@@ -48,6 +48,3 @@ group.x = 62
 group.y = 16
 
 display.show(group)
-
-while True:
-    pass
