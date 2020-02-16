@@ -1,4 +1,3 @@
-
 # Import the needed modules
 import board
 import adafruit_ssd1306
