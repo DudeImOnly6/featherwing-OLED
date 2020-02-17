@@ -5,7 +5,8 @@ import displayio
 import time
 import random
 import adafruit_imageload
-# import font
+import adafruit_displayio_ssd1306
+# import fontstuffs
 
 # Initialize the display
 # Change dimensions as needed
@@ -27,23 +28,19 @@ while True:
     display.fill(0)
 
 # SPRITES
-sprite_sheet, palette = adafruit_imageload.load("/rock3.bmp",
-                                          bitmap=displayio.Bitmap,
-                                          palette=displayio.Palette)
+displayio.release_displays()
+displaybus = displayio.I2CDisplay(board.I2C(), device_address=0x3c)
 
+rockdisplay = adafruit_displayio_ssd1306.SSD1306(displaybus, width=128, height=32)
 
-sprite = displayio.TileGrid(sprite_sheet, pixel_shader=palette,
-                            width = 1,
-                            height = 1,
-                            tile_width = 16,
-                            tile_height = 16,
-                            default_tile = 0)
+bitmap, palette = adafruit_imageload.load("/Rock.bmp", bitmap=displayio.Bitmap, palette=displayio.Palette)
 
+tile_grid = displayio.TileGrid(bitmap, pixel_shader=palette)
 
-tile_grid = displayio.TileGrid(sprite_sheet, pixel_shader=palette)
 group = displayio.Group()
 group.append(tile_grid)
-group.x = 62
-group.y = 16
 
-display.show(group)
+rockdisplay.show(group)
+
+while True:
+    pass
