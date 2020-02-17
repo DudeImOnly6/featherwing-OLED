@@ -28,7 +28,6 @@ while True:
     display.fill(0)
 
 # SPRITES
-displayio.release_displays()
 displaybus = displayio.I2CDisplay(board.I2C(), device_address=0x3c)
 
 rockdisplay = adafruit_displayio_ssd1306.SSD1306(displaybus, width=128, height=32)
